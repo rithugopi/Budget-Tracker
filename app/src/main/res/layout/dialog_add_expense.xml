@@ -15,7 +15,9 @@
         android:id="@+id/editTextAmount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter amount" />
+        android:hint="Enter amount"
+        android:inputType="numberDecimal" />
+
 
     <EditText
         android:id="@+id/editTextDescription"

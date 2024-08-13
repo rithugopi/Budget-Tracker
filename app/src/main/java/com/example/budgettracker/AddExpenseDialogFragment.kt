@@ -8,9 +8,8 @@ import android.view.View
 import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.Spinner
-import androidx.fragment.app.DialogFragment
 import android.widget.ArrayAdapter
-
+import androidx.fragment.app.DialogFragment
 
 class AddExpenseDialogFragment : DialogFragment() {
 
@@ -38,12 +37,18 @@ class AddExpenseDialogFragment : DialogFragment() {
             .setView(view)
             .setPositiveButton("Add") { _, _ ->
                 val category = categorySpinner.selectedItem.toString()
-                val amount = amountEditText.text.toString().toDoubleOrNull() ?: 0.0
-                val description = descriptionEditText.text.toString()
-                val date = "${datePicker.dayOfMonth}/${datePicker.month + 1}/${datePicker.year}"
+                val amountText = amountEditText.text.toString()
+                val amount = amountText.toDoubleOrNull() ?: 0.0
+                if (amountText.isNotEmpty() && amount > 0) {
+                    val description = descriptionEditText.text.toString()
+                    val date = "${datePicker.dayOfMonth}/${datePicker.month + 1}/${datePicker.year}"
 
-                val expense = Expense(category, amount, description, date)
-                listener?.invoke(expense)
+                    val expense = Expense(category, amount, description, date)
+                    listener?.invoke(expense)
+                } else {
+                    // Show error message if the amount is invalid
+                    amountEditText.error = "Enter a valid amount"
+                }
             }
             .setNegativeButton("Cancel", null)
 
