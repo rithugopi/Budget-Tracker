@@ -5,13 +5,12 @@ import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.fragment.app.DialogFragment
+import android.widget.ArrayAdapter
+
 
 class AddExpenseDialogFragment : DialogFragment() {
 
@@ -29,6 +28,12 @@ class AddExpenseDialogFragment : DialogFragment() {
         val descriptionEditText = view.findViewById<EditText>(R.id.editTextDescription)
         val datePicker = view.findViewById<DatePicker>(R.id.datePicker)
 
+        // Set up the spinner with categories
+        val categories = arrayOf("Home", "Clothes", "Grocery", "Entertainment", "Utilities", "Transportation", "Other")
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, categories)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        categorySpinner.adapter = adapter
+
         val dialogBuilder = AlertDialog.Builder(requireContext())
             .setView(view)
             .setPositiveButton("Add") { _, _ ->
@@ -41,9 +46,6 @@ class AddExpenseDialogFragment : DialogFragment() {
                 listener?.invoke(expense)
             }
             .setNegativeButton("Cancel", null)
-            .setNeutralButton("Add Expense") { _, _ ->
-                // Handle Add Expense button click if necessary
-            }
 
         return dialogBuilder.create()
     }
