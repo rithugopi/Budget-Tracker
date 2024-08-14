@@ -2,13 +2,30 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    >
+
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="What is your this month's budget? "
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="250dp"/>
+
+
+
+
+
+
 
     <EditText
         android:id="@+id/editTextBudget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter your monthly budget"
+        android:textStyle="italic"
         android:inputType="numberDecimal"
         android:layout_marginTop="300dp"/>
 
