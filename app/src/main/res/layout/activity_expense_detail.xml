@@ -5,14 +5,33 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/textViewCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Category: "
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginTop="350dp"
-        android:layout_marginLeft="100dp"/>
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="130dp"/>
+    <TextView
+        android:id="@+id/textViewCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textSize="18sp"
+
+        android:layout_marginTop="190dp"
+        android:layout_marginLeft="130dp"/>
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewCategory"
+        android:text="Amount: "
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="40dp"/>
 
     <TextView
         android:id="@+id/textViewAmount"
@@ -21,7 +40,19 @@
         android:layout_below="@id/textViewCategory"
         android:text="Amount: "
         android:textSize="18sp"
-        android:layout_marginLeft="100dp"/>
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="130dp"/>
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewAmount"
+        android:text="Description: "
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="130dp"/>
 
     <TextView
         android:id="@+id/textViewDescription"
@@ -29,8 +60,20 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewAmount"
         android:text="Description: "
+        android:layout_marginTop="80dp"
         android:textSize="18sp"
-        android:layout_marginLeft="100dp"/>
+        android:layout_marginLeft="130dp"/>
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewDescription"
+        android:text="Date: "
+        android:textStyle="bold"
+        android:layout_marginTop="40dp"
+        android:textSize="18sp"
+        android:layout_marginLeft="130dp"/>
 
     <TextView
         android:id="@+id/textViewDate"
@@ -38,7 +81,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewDescription"
         android:text="Date: "
+        android:layout_marginTop="80dp"
         android:textSize="18sp"
-        android:layout_marginLeft="100dp"/>
+        android:layout_marginLeft="130dp"/>
 
 </RelativeLayout>
