@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
+    private val ADD_EXPENSE_REQUEST_CODE = 1
+    private var budgetLimit: Double = 0.0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -16,7 +19,8 @@ class MainActivity : AppCompatActivity() {
         val buttonNext = findViewById<Button>(R.id.buttonNext)
 
         buttonNext.setOnClickListener {
-            val budget = editTextBudget.text.toString().toDoubleOrNull()
+            val budget = editTextBudget.text.toString().toDoubleOrNull() ?: 0.0
+            budgetLimit = budget
 
             if (budget != null) {
                 val intent = Intent(this, ExpenseListActivity::class.java).apply {
@@ -26,6 +30,11 @@ class MainActivity : AppCompatActivity() {
             } else {
                 editTextBudget.error = "Please enter a valid budget amount"
             }
+
+            val intent = Intent(this, ExpenseListActivity::class.java).apply {
+                putExtra("TODAYS_BUDGET", budgetLimit)
+            }
+            startActivityForResult(intent, ADD_EXPENSE_REQUEST_CODE)
         }
     }
 }

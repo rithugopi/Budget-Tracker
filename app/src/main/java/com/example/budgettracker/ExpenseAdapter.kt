@@ -6,9 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ExpenseAdapter(private val expenses: List<Expense>) : RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder>() {
+class ExpenseAdapter(private val expenseList: List<Expense>) :
+    RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder>() {
 
-    class ExpenseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ExpenseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textViewCategory: TextView = itemView.findViewById(R.id.textViewCategory)
         val textViewAmount: TextView = itemView.findViewById(R.id.textViewAmount)
         val textViewDescription: TextView = itemView.findViewById(R.id.textViewDescription)
@@ -16,17 +17,18 @@ class ExpenseAdapter(private val expenses: List<Expense>) : RecyclerView.Adapter
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpenseViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_expense, parent, false)
-        return ExpenseViewHolder(view)
+        val itemView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_expense, parent, false)
+        return ExpenseViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: ExpenseViewHolder, position: Int) {
-        val expense = expenses[position]
+        val expense = expenseList[position]
         holder.textViewCategory.text = expense.category
-        holder.textViewAmount.text = expense.amount.toString()
+        holder.textViewAmount.text = "Amount: $${"%.2f".format(expense.amount)}"
         holder.textViewDescription.text = expense.description
-        holder.textViewDate.text = expense.date
+        holder.textViewDate.text = "Date: ${expense.date}"
     }
 
-    override fun getItemCount() = expenses.size
+    override fun getItemCount() = expenseList.size
 }
