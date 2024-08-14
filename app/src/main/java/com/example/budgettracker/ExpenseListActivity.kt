@@ -43,7 +43,15 @@ class ExpenseListActivity : AppCompatActivity() {
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewExpenses)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = ExpenseAdapter(expenses)
+        adapter = ExpenseAdapter(expenses) { expense ->
+            val intent = Intent(this, ExpenseDetailActivity::class.java).apply {
+                putExtra("CATEGORY", expense.category)
+                putExtra("AMOUNT", expense.amount)
+                putExtra("DESCRIPTION", expense.description)
+                putExtra("DATE", expense.date)
+            }
+            startActivity(intent)
+        }
         recyclerView.adapter = adapter
 
         // Initialize the total amount spent
@@ -124,7 +132,7 @@ class ExpenseListActivity : AppCompatActivity() {
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.drawable.baseline_circle_notifications_24) // Add a notification icon
             .setContentTitle("Expense Limit Reached!")
-            .setContentText("You have exceeded today's budget limit.")
+            .setContentText("You have exceeded monthly budget limit.")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setVibrate(longArrayOf(0, 500, 1000))
 

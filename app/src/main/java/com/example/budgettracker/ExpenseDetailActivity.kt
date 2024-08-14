@@ -1,4 +1,3 @@
-// ExpenseDetailActivity.kt
 package com.example.budgettracker
 
 import android.os.Bundle
@@ -11,12 +10,19 @@ class ExpenseDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_expense_detail)
 
-        val amount = intent.getStringExtra("EXTRA_AMOUNT")
-        val category = intent.getStringExtra("EXTRA_CATEGORY")
-        val description = intent.getStringExtra("EXTRA_DESCRIPTION")
-        val date = intent.getStringExtra("EXTRA_DATE")
+        val category = intent.getStringExtra("CATEGORY")
+        val amount = intent.getDoubleExtra("AMOUNT", 0.0)
+        val description = intent.getStringExtra("DESCRIPTION")
+        val date = intent.getStringExtra("DATE")
 
-        val textViewDetails = findViewById<TextView>(R.id.textViewDetails)
-        textViewDetails.text = "Amount: $amount\nCategory: $category\nDescription: $description\nDate: $date"
+        val textViewCategory: TextView = findViewById(R.id.textViewCategory)
+        val textViewAmount: TextView = findViewById(R.id.textViewAmount)
+        val textViewDescription: TextView = findViewById(R.id.textViewDescription)
+        val textViewDate: TextView = findViewById(R.id.textViewDate)
+
+        textViewCategory.text = "Category: $category"
+        textViewAmount.text = "Amount: $${"%.2f".format(amount)}"
+        textViewDescription.text = "Description: $description"
+        textViewDate.text = "Date: $date"
     }
 }

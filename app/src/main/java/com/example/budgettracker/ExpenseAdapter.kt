@@ -6,14 +6,25 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ExpenseAdapter(private val expenseList: List<Expense>) :
-    RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder>() {
+class ExpenseAdapter(
+    private val expenseList: List<Expense>,
+    private val onItemClick: (Expense) -> Unit
+) : RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder>() {
 
     inner class ExpenseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textViewCategory: TextView = itemView.findViewById(R.id.textViewCategory)
         val textViewAmount: TextView = itemView.findViewById(R.id.textViewAmount)
         val textViewDescription: TextView = itemView.findViewById(R.id.textViewDescription)
         val textViewDate: TextView = itemView.findViewById(R.id.textViewDate)
+
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onItemClick(expenseList[position])
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpenseViewHolder {
